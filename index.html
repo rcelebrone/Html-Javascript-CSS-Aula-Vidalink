@@ -17,6 +17,41 @@
         <span><i class="material-icons">mic</i></span>
         <span><i class="material-icons">camera_alt</i></span>   
     </footer>
-    <script src="js/app.js"></script>
+    <script src="js/relogio.js"></script>
+    <script src="js/calendario.js"></script>
+    <script>
+        /*
+            Dica: 
+                () => { ... } 
+            é igual a isso:
+                function () { ... }
+
+            A primeira forma de escrever uma function sem a palavra function é chamado de "arrow function, por causa do sinal =>"
+        */
+
+        //relogio e calendario foram carregados nos dois arquivos js que colocamos nas linhas acima, 
+        //então, podemos usar as classes desses arquivos logo abaixo deles
+        (() => {  
+            //crio uma variavel que vai receber uma instancia da classe calendario
+            let cal = new Calendario(document.getElementById("data"));
+            //executo o método escrever da classe calendario
+            cal.escrever();
+
+            //executo a função setInterval do javascript
+            //Essa função se propoe a executar uma outra função infinitamente, em um intervalo de tempo que podemos definir
+            //Essa função recebe 2 paramêtro. O primeiro é uma "function(){ ... }" o segundo paramêtro é o intervalo de execução
+            setInterval(() => {
+                    //crio uma variavel que vai receber uma instancia da classe relogio
+                    //Dica: Lembra que na terceira aula expliquei que a variavel é 
+                    //necessário para criar uma referencia até a memória? Então, a variavel rel, 
+                    //é apenas um apontamento para o endereço de memória onde está a instancia da classe relogio
+                    let rel = new Relogio(document.getElementById("hora"), 
+                                        new Date());
+                    //executo o método escrever daclasse relogio
+                    rel.escrever();
+                },
+                1000);
+        })();
+    </script>
    </body>
 </html>
